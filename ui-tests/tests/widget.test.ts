@@ -3,7 +3,9 @@ import { expect } from '@playwright/test';
 
 async function createNewNotebook(page) {
     await page.notebook.createNew("notebook.ipynb");
+    await page.notebook.waitFor();
     await page.notebook.openByPath("notebook.ipynb");
+    await page.notebook.waitFor();
     await page.notebook.activate("notebook.ipynb");
 }
 
@@ -27,8 +29,12 @@ async function createDefaultConnection(page) {
     await displayWidget(page);
 
     // click on create new connection button and create a new connection
-    await page.locator('#createNewConnection').click();
-    await page.locator('#createConnectionFormButton').click();
+    const createNew = await page.locator('#createNewConnection');
+    await createNew.waitFor();
+    createNew.click();
+    const submitButton = await page.locator('#createConnectionFormButton');
+    await submitButton.waitFor();
+    submitButton.click();
 }
 
 test('test displays existing connections', async ({ page }) => {
