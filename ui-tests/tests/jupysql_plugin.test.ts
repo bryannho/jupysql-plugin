@@ -23,6 +23,7 @@ const testCells = async (page: IJupyterLabPageFixture, notebook: string, theme: 
     console.log(`Testing notebook: ${notebook}`)
 
     await page.notebook.openByPath(notebook);
+    await page.waitForNavigation({timeout: 10});
     await page.notebook.activate(notebook);
 
     let numCellImages = 0;
