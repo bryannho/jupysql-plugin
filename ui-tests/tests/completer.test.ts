@@ -7,7 +7,7 @@ test('test options displayed on tab', async ({ page }) => {
     await page.notebook.activate("sample.ipynb");
     await page.notebook.enterCellEditingMode(0);
     const cell = await page.notebook.getCell(0)
-    await cell?.fill('%%sql\nsel')
+    await cell?.type('%%sql\nsel')
     await page.keyboard.press('Tab');
 
     // delay to ensure the autocompletion options are displayed
@@ -27,7 +27,7 @@ test('test complete updates cell', async ({ page }) => {
     await page.notebook.activate("sample.ipynb");
     await page.notebook.enterCellEditingMode(0);
     const cell = await page.notebook.getCell(0)
-    await cell?.fill('%%sql\nsel')
+    await cell?.type('%%sql\nsel')
     await page.keyboard.press('Tab')
 
     // delay to ensure the autocompletion options are displayed
