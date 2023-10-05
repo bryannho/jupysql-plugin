@@ -2,8 +2,11 @@ import { test } from '@jupyterlab/galata';
 import { expect } from '@playwright/test';
 
 async function createNewNotebook(page) {
+    await page.waitFor()
     await page.notebook.createNew("notebook.ipynb");
+    await page.waitFor()
     await page.notebook.openByPath("notebook.ipynb");
+    await page.waitFor()
     await page.notebook.activate("notebook.ipynb");
 }
 
